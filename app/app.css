@@ -9,7 +9,19 @@ html,
 body {
   @apply bg-white dark:bg-gray-950;
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+  @media (prefers-color-scheme: light) {
+    color-scheme: light;
   }
+}
+
+.link {
+  border-color: var(--color-blue-300);
+  border-radius: 8px;
+  padding: 5px 10px;
+  transition: all 0.2 ease;
+}
+.link:hover {
+  border-color: var(--color-blue-300);
+  text-underline-offset: 2px;
+  background-color: var(--color-sky-500)
 }
