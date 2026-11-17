@@ -70,8 +70,6 @@ const questions = [
   { lesson: "Lesson 2", type: "identification", question: "This punctuation mark tells the compiler that one instruction has ended(SYMBOL).", answer: ";" },
 
   //LESSON 3
-  // ... (Keep the rest of your code exactly as it is)
-  //LESSON 3
   // ===================== MULTIPLE CHOICE (20) =====================
   { lesson: "Lesson 3", type: "multiple-choice", question: "What is a variable in C++?", options: ["A. A fixed value that can never change", "B. A named container in memory that stores a value that can change while the program runs", "C. A reserved C++ keyword", "D. A symbol that ends every statement"], answer: "B" },
   { lesson: "Lesson 3", type: "multiple-choice", question: "Which of the following is a VALID variable name in C++?", options: ["A. 2ndYear", "B. student name", "C. total_score", "D. class"], answer: "C" },
