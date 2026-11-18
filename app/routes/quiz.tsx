@@ -1,19 +1,9 @@
 import { useLoaderData } from "react-router"
-
-
-interface Lesson {id: string; lesson: string;name: string}
-
-const Hardcoded_Lessons: Lesson[] = [
-    {id: "1", lesson:"Lesson 1", name: "Glimpse at Emerging Technologies"},
-    {id: "2", lesson:"Lesson 2", name: "Introduction To C++ Programming"},
-    {id: "3", lesson:"Lesson 3", name: "C++ Basics"},
-    {id: "4", lesson:"Lesson 4", name: "C++ Logic"},
-    {id: "5", lesson:"Lesson 5", name: "Functions & Debugging in C+"},
-]
+import { lessons as allLessons } from "~/data/lesson";
 
 export function loader(){
     return{
-        lessons: Hardcoded_Lessons
+        lessons: allLessons
     }
 }
 
@@ -21,24 +11,27 @@ export default function quizzes(){
     const { lessons } = useLoaderData<typeof loader>();
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
-            <div className="bg-white w-full flex flex-col items-center justify-center">
+            <div className="w-full flex flex-col items-center justify-center">
+                    <table className="bg-slate-100 border-2 border-black table-auto">
+                    <thead>
                     <tr>
-                        <th></th>
-                        <th><p>Lesson</p></th>
-                        <th><p>Name</p></th>
+                        <th className="p-2 text-left"><input type="checkbox" /></th>
+                        <th className="p-2 text-left"><p>Lesson</p></th>
+                        <th className="p-2 text-left"><p>Name</p></th>
                     </tr>
+                    </thead>
             {lessons.map((val) => {
                 return(
-                    <table className="border-2 border-separate">
-                        
+                    <tbody>
                         <tr key={val.id}>
-                            <td><input type="checkbox" /></td>
-                            <td><p>{val.lesson}</p></td>
-                            <td><p>{val.name}</p></td>
+                            <td className="p-2"><input type="checkbox" /></td>
+                            <td className="p-2"><p>{val.lesson}</p></td>
+                            <td className="p-2"><p>{val.name}</p></td>
                         </tr>
-                    </table>
+                    </tbody>
                 )
             })}
+                    </table>
             </div>
             <div>
                 <button>Hello</button>

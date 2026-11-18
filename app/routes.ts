@@ -5,4 +5,5 @@ export default [
         index("routes/home.tsx"),
         route("quiz", "routes/quiz.tsx"),
         route("lessons", "routes/lessons.tsx"),
+        route("lessons/:lessonId", "routes/lesson.tsx"),
 ])] satisfies RouteConfig;
