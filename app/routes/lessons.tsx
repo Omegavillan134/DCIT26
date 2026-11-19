@@ -1,12 +1,13 @@
-import { Link, useLoaderData } from "react-router";
-import { lessons as allLessons } from "~/data/lesson";
+import { Link } from "react-router";
+import type { Route } from "./+types/lessons";
+import { lessons } from "~/data/lesson";
 
-export function loader() {
-  return { lessons: allLessons };
+export function clientLoader() {
+  return { lessons };
 }
 
-export default function Lessons() {
-  const { lessons } = useLoaderData<typeof loader>();
+export default function Lessons({ loaderData }: Route.ComponentProps) {
+  const { lessons } = loaderData;
   return (
     <div>
       <div>

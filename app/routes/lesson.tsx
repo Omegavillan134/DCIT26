@@ -7,7 +7,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   return [{ title: `${loaderData.lesson.lesson} – ${loaderData.lesson.name}` }];
 }
 
-export function loader({ params }: Route.LoaderArgs) {
+export function clientLoader({ params }: Route.ClientLoaderArgs) {
   const lesson = lessons.find((l) => l.id === params.lessonId);
   if (!lesson) throw new Response("Lesson not found", { status: 404 });
   return { lesson, lessons };
@@ -34,22 +34,14 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
       return p;
     }, { preventScrollReset: true });
 
-  const pdfSrc = lesson.pdf
-    ? `${lesson.pdf}#navpanes=0&pagemode=none&view=FitH&zoom=page-width`
+  const base = import.meta.env.BASE_URL;
+  const pdfPath = lesson.pdf?.startsWith("/") ? lesson.pdf.slice(1) : lesson.pdf;
+  const pdfSrc = pdfPath
+    ? `${base}${pdfPath}#navpanes=0&pagemode=none&view=FitH&zoom=page-width`
     : undefined;
-  return (
-    <div className="mx-auto flex w-full max-w-5xl gap-8 p-6">
-      <aside className="w-56 shrink-0">
-        <nav className="flex flex-col gap-2">
-          {lessons.map((item) => (
-            <Link key={item.id} to={`/lessons/${item.id}?view=${view}`}
-              className={item.id === lesson.id ? "font-bold" : ""}>
-              {item.lesson}: {item.name}
-            </Link>
-          ))}
-        </nav>
-      </aside>
 
+  return (
+    <div className="mx-auto w-full max-w-5xl p-6">
       <article className="min-w-0 flex-1">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
           <h1 className="text-2xl font-bold">{lesson.lesson}: {lesson.name}</h1>
@@ -70,7 +62,7 @@ export default function LessonDetail({ loaderData }: Route.ComponentProps) {
 
         <p className="mb-4">{lesson.description}</p>
 
-        {view === "slides" && lesson.pdf ? (
+        {view === "slides" && pdfSrc ? (
           <div className="flex flex-col gap-2">
             <iframe src={pdfSrc} title={`${lesson.lesson} slides`}
               className="h-[80vh] w-full rounded-lg border-2 border-black bg-white" />
