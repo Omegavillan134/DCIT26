@@ -25,3 +25,8 @@ body {
   text-underline-offset: 2px;
   background-color: var(--color-sky-500)
 }
+
+nav a.active {
+  background-color: var(--color-sky-500);
+  color: white;
+}
