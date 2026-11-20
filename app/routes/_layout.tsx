@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 
 export default function Layout() {
   return (
@@ -9,9 +9,11 @@ export default function Layout() {
             <div className="relative flex">
               <div className="absolute right-30 top-10">
                 <div className="flex gap-4">
-                  <Link className="link text-white" to="/">Home</Link>
-                  <Link className="link text-white" to="/lessons">Lessons</Link>
-                  <Link className="link text-white" to="/quiz">Quiz</Link>
+                  <Nav>
+                    <NavLink className="link text-white" to="/">Home</NavLink>
+                    <NavLink className="link text-white" to="/lessons">Lessons</NavLink>
+                    <NavLink className="link text-white" to="/quiz">Quiz</NavLink>
+                  </Nav>
                 </div>
               </div>
             </div>
