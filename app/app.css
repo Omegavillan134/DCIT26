@@ -30,3 +30,9 @@ nav a.active {
   background-color: var(--color-sky-500);
   color: white;
 }
+
+
+nav a.active {
+  background-color: var(--color-sky-500);
+  color: white;
+}
